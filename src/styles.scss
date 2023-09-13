@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import "primeicons/primeicons.css";
+@import './app/scss/variables';
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: $primary-font;
+    font-weight: 400;
+    color: $primary-text-color;
+    padding: 0;
+    margin: 0;
+}
+
+.list-style-none {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-layout {
+    padding: 20px;
+    padding-top: 134px;
+}

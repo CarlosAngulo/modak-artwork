@@ -1,0 +1,11 @@
+@import '../../scss/variables';
+
+.not-found {
+    background-color: $primary-backround;
+    height: 100%;
+    text-align: center;
+    strong {
+        display: block;
+        font-size: 3em;
+    }
+}

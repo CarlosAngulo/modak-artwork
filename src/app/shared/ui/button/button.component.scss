@@ -1,0 +1,26 @@
+@import '../../../scss/variables';
+
+button {
+    border: 3px solid $highlight-text-color;
+    padding: 20px;
+    color: $highlight-text-color;
+    background-color: transparent;
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    border-radius: 900px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease-out;
+    &:hover {
+        background-color: rgba(255,255,255,0.1);
+    }
+    &[disabled] {
+        cursor: default;
+        opacity: 0.4;
+        &:hover {
+            background-color: transparent;
+        }
+    }
+}

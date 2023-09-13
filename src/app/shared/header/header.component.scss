@@ -1,0 +1,99 @@
+@import '../../scss/variables.scss';
+
+.header {
+    &__top {
+        color: $highlight-text-color;
+        background-color:$primary-backround;
+        font-size: 12px;
+        text-transform: uppercase;
+
+        &-list {
+            border-left: 0.5px solid rgba($highlight-border-color, 0.4);
+            &:first-child {
+                border-left: medium none;
+            }
+        }
+
+        &-submenu {
+            display: none;
+            position: absolute;
+            top: 30px;
+            left: 0;
+            &-item {
+                cursor: pointer;
+                background-color: rgba($primary-backround, 0.9);
+                &:hover {
+                    background-color: $primary-backround;
+                }
+            }
+        }
+
+        &-item {
+            position: relative;
+            cursor: pointer;
+            &:hover .header__top-submenu {
+                display: block;
+                width: 100%;
+            }
+        }
+    }
+
+    &__content {
+        background-color: rgba($primary-backround, 0.2);
+        border-top: 0.5px solid rgba($highlight-border-color, 0.4);
+        border-bottom: 0.5px solid rgba($highlight-border-color, 0.4);
+    }
+
+    &__navigation {
+        &-item {
+            transition: background-color 0.3s ease-out;
+            cursor: pointer;
+            &:hover {
+                background-color: rgba($primary-backround, 0.8);
+            }
+            &--bordered {
+                border-left: 0.5px solid rgba($highlight-border-color, 0.4);
+            }
+        }
+        &-link {
+            color: inherit;
+            text-decoration: none;
+            text-transform: uppercase;
+        }
+    }
+
+    &__brand {
+        font-family: 'Chonburi', serif;
+        color: $empahsis-text-color;
+        text-decoration: none;
+        font-size: 22px;
+        @media (min-width: $sm) {
+            font-size: 30px;
+        }
+        @media (min-width: $md) {
+            font-size: 36px;
+        }
+    }
+
+    &__auth {
+        &-button {
+            background-color: transparent;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: block;
+            border: 3px solid $highlight-text-color;
+            cursor: pointer;
+            color: $highlight-text-color;
+            font-weight: 700;
+        }
+    }
+}
+
+.sidePanel {
+    position: absolute;
+    z-index: 10;
+    right: 0;
+    background-color: rgba(70, 70, 70, 0.6);
+    backdrop-filter: blur(5px);
+}

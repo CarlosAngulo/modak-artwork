@@ -1,0 +1,23 @@
+<div class="user p-4">
+    <div class="flex flex-column gap-2 p-4">
+        <div class="flex gap-3">
+            <span>User Name:</span>
+            <strong>
+                {{user.name}}
+            </strong>
+        </div>
+        <div class="flex gap-3">
+            <span>Role:</span>
+            <strong>
+                {{user.role}}
+            </strong>
+        </div>
+        <div class="flex gap-3">
+            <span>email:</span>
+            <strong>
+                {{user.email}}
+            </strong>
+        </div>
+    </div>
+    <mdk-button text="Logout" (click)="onLogoutClick()"/>
+</div>

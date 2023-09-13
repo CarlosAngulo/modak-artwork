@@ -1,0 +1,18 @@
+@import '../../scss/variables.scss';
+
+.login {
+    &__error {
+        background-color: $highlight-text-color;
+        color: $alert-text-color;
+    }
+}
+
+.p-button {
+    width: 100%;
+    display: block;
+}
+
+label {
+    text-transform: capitalize;
+    font-weight: bold;
+}

@@ -1,0 +1,80 @@
+<header class="header">
+    <div class="header__top">
+        <ul class="header__top-list flex list-style-none">
+            <li class="header__top-item px-4 py-2 hidden md:flex flex-grow-1 gap-2 align-items-center">
+                <i class="pi pi-calendar-minus"></i>
+                The museum is open today 10AM
+            </li>
+            <li class="header__top-item px-4 py-2 hidden md:flex gap-2 align-items-center">
+                <i class="pi pi-map-marker"></i>
+                34TH AVE, QUEENS, NY 11106
+            </li>
+            <li class="header__top-item px-4 py-2 flex gap-2 align-items-center ml-auto">
+                <i class="pi pi-globe"></i>
+                language {{currentLanguage}}
+                <ul class="header__top-submenu list-style-none">
+                    <li class="header__top-submenu-item p-3"
+                        (click)="english()">
+                        english
+                    </li>
+                    <li class="header__top-submenu-item p-3"
+                        (click)="spanish()">
+                        spanish
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="header__content flex flex-wrap justify-content-between align-items-stretch">
+        <ul role="navigation"
+            class="header__navigation hidden md:flex align-items-stretch list-style-none">
+            <li class="header__navigation-item flex align-items-stretch">
+                <a class="header__navigation-link p-3 md:p-5 flex align-items-center"
+                    [routerLink]="['/']">
+                    Home
+                </a>
+            </li>
+            <li class="header__navigation-item flex align-items-stretch">
+                <a class="header__navigation-link p-3 md:p-5 flex align-items-center"
+                    [routerLink]="['/gallery']">
+                    Gallery
+                </a>
+            </li>
+        </ul>
+        <a [routerLink]="['/']"
+            class="header__brand flex align-items-center pl-2 sm:pl-4 md:pl-0">
+            the gallery
+        </a>
+        <div class="header__auth">
+            <ul role="navigation"
+                class="header__navigation flex align-items-stretch list-style-none">
+                <li class="header__navigation-item flex align-items-stretch">
+                    <a class="header__navigation-link p-3 md:p-5 flex align-items-center"
+                        [routerLink]="['/shop']">
+                        shop
+                    </a>
+                </li>
+                <li class="header__navigation-item header__navigation-item--bordered p-3 md:p-5"
+                    (click)="toggleShowLogin()">
+                    <button class="header__auth-button">
+                        <ng-container *ngIf="userName; else icon">
+                            <span>{{userName | initials}}</span>
+                        </ng-container>
+                        <ng-template #icon>
+                            <i class="pi pi-user"></i>
+                        </ng-template>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header>
+
+<div class="sidePanel w-full md:max-w-30rem" *ngIf="showPanel">
+    <ng-container *ngIf="isUserLogged; else login">
+        <app-user (onUserLogout)="logout()"></app-user>
+    </ng-container>
+    <ng-template #login>
+        <app-login (onAuenticateUser)="autenticateUser($event)"></app-login>
+    </ng-template>
+</div>

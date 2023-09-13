@@ -1,0 +1,46 @@
+<div class="login p-4">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="flex flex-column gap-2 mb-4">
+            <label htmlFor="email">
+                {{'login.fields.email' | translate}}
+            </label>
+            <input
+                type="text"
+                pInputText
+                formControlName="email"
+                aria-labelledby="Your email"
+                required
+            />
+            <small
+                *ngIf="fieldNames"
+                [class.p-error]="emailFieldStatus.error"
+                [translate]="emailFieldStatus.message"
+                [translateParams]="{value: fieldNames['login.fields.email']}">
+            </small>
+        </div>
+        <div class="flex flex-column gap-2 mb-4">
+            <label htmlFor="password">
+                {{'login.fields.password' | translate}}
+            </label>
+            <input
+                type="password"
+                pInputText
+                formControlName="password"
+                aria-labelledby="Your password"
+                required
+            />
+            <small
+                *ngIf="fieldNames"
+                [class.p-error]="passwordFieldStatus.error"
+                [translate]="passwordFieldStatus.message"
+                [translateParams]="{value: fieldNames['login.fields.password']}">
+            </small>
+        </div>
+
+        <mdk-button text="submit" type="submit" [disabled]="!loginForm.valid"/>
+
+    </form>
+    <div *ngIf="loginError" class="login__error mt-4 p-3">
+        {{'login.messages.login_error' | translate}}
+    </div>
+</div>

@@ -1,0 +1,15 @@
+{
+    "login": {
+        "fields": {
+            "email": "email",
+            "password": "password"
+        },
+        "messages": {
+            "pristine": "Enter your {{value}}",
+            "required": "The {{value}} is required",
+            "pattern": "The {{value}} is not valid",
+            "minlength": "The {{value}} is not valid",
+            "login_error": "Invalid user or password"
+        }
+    }
+}

@@ -1,0 +1,16 @@
+@import '../../scss/variables';
+
+.search {
+    border: 1px solid rgba($highlight-border-color, 0.5);
+    &-container {
+        width: 100%;
+        max-width: 1000px;
+    }
+    &-input {
+        padding: 4px 10px;
+        border: medium none;
+        border-radius: 4px;
+        color: #555;
+        font-size: 1.05em;
+    }
+}

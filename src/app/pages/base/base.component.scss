@@ -1,0 +1,13 @@
+@import '../../scss/variables';
+
+.page {
+    &-layout {
+        background-color: $primary-backround;
+        min-height: 100%;
+        padding: 20px;
+        padding-top: 134px;
+    }
+    &-container {
+        max-width: 1280px;
+    }
+}

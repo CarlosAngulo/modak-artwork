@@ -1,0 +1,26 @@
+<mdk-page-base>
+    <ng-container *ngIf="!!artwork">
+        <h1 class="title text-2xl md:text-4xl">
+            {{artwork.title}}
+        </h1>
+        <div class="grid">
+            <div class="col-12 md:col-6">
+                <figure class="figure">
+                    <img class="image" [src]="artwork.image" [alt]="artwork.title">
+                </figure>
+            </div>
+            <div class="col-12 md:col-6">
+                <ng-container *ngIf="artwork.description">
+                    <div class="mb-4">
+                        <h4>Description</h4>
+                        <div class="description" [innerHTML]="artwork.description"></div>
+                    </div>
+                </ng-container>
+                <div class="mb-4">
+                    <h4>Author</h4>
+                    <div class="description">{{artwork.artist}}</div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</mdk-page-base>
