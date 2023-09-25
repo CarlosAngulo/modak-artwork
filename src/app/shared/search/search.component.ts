@@ -1,6 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { SearchService } from './search.service';
-import { KeywordSearchStrategy, ProductSearchStrategy } from './search.strategy';
+import { ArtworksearchStrategy, ProductSearchStrategy } from './search.strategy';
+import { GalleryGateway } from '@app/api/domain/gallery/gallery-gateway';
+import { ProductsGateway } from '@app/api/domain/products/products-gateway';
+import { Subject, debounceTime, filter } from 'rxjs';
+import { IResultsDTO } from '@app/api/domain/api.model';
 
 @Component({
     selector: 'mdk-search',
@@ -8,21 +12,47 @@ import { KeywordSearchStrategy, ProductSearchStrategy } from './search.strategy'
     styleUrls: ['./search.component.scss'],
     providers: [SearchService]
 })
-export class SearchComponent {
+export class SearchComponent implements OnInit {
+    @Output() onSearchResults = new EventEmitter<{results: IResultsDTO, type: string}>();
     searchValue!: string;
-    constructor(private searchService: SearchService) {}
+    searchTerms = ['Artworks', 'Products'];
+    selectedSearchTerm!: string;
+    searchValueSubject = new Subject<string>();
 
-    searchByKeywords(): void {
-        if(this.searchValue) {
-            this.searchService.setStrategy(new KeywordSearchStrategy());
-            this.searchService.search(this.searchValue);
-        }
-    }
+    constructor(
+        private searchService: SearchService,
+        private galleryApi: GalleryGateway,
+        private productsApi: ProductsGateway,
+    ) {}
     
-    searchByCategory(): void {
-        if(this.searchValue) {
-            this.searchService.setStrategy(new ProductSearchStrategy());
-            this.searchService.search(this.searchValue);
+    ngOnInit(): void {
+        this.searchValueSubject
+        .pipe(
+            debounceTime(400),
+            filter((val) => val.length > 3)
+        )
+        .subscribe((val) => this.search(val))
+    }
+
+    search(term: string): void {
+        this.searchService.search(term)
+        .subscribe( (results) => this.onSearchResults.emit({
+            results,
+            type: this.selectedSearchTerm
+        }) );
+    }
+
+    onSwitchType(evt: number): void {
+        this.selectedSearchTerm = this.searchTerms[evt];
+
+        this.searchService.setStrategy(
+            evt === 0
+            ? new ArtworksearchStrategy(this.galleryApi)
+            : new ProductSearchStrategy(this.productsApi)
+        );
+
+        if (this.searchValue?.length > 3) {
+            this.search(this.searchValue);
         }
     }
 }

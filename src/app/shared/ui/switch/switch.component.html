@@ -1,0 +1,9 @@
+<div class="switch">
+    <div
+        *ngFor="let option of values; let i = index"
+        class="switch-option"
+        [class.switch-option--selected]="selectedOption === i"
+        (click)="onSelectionChange(i)">
+        {{values[i]}}
+    </div>
+</div>

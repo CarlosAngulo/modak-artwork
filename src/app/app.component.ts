@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { AuthService } from './auth/services/auth.service';
 import { Store } from '@ngrx/store';
 import { login } from './auth/state/auth.actions';
@@ -10,9 +10,10 @@ import { login } from './auth/state/auth.actions';
 })
 export class AppComponent implements OnInit {
   constructor(
-    private authService: AuthService,
     private store: Store
   ) {}
+
+  authService = inject(AuthService);
 
   ngOnInit(): void {
     this.checkAuthentication();

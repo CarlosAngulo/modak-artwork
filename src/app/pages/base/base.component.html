@@ -1,8 +1,9 @@
 <div class="page-layout">
     <div class="page-container m-auto">
-        <ng-container *ngIf="loading; else content">
-            <div class="flex align-items-center justify-content-center">
+        <ng-container *ngIf="!loaded; else content">
+            <div class="flex flex-column gap-3 align-items-center justify-content-center">
                 <h2>Loading...</h2>
+                <mdk-loader></mdk-loader>
             </div>
         </ng-container>
         <ng-template #content>

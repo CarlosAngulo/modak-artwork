@@ -11,6 +11,10 @@ import { StoreModule } from '@ngrx/store';
 import { languageReducer } from './state/language/language.reducer';
 import { TokenInterceptor } from './interceptors/auth/token.interceptor';
 import { PagesModule } from './pages/pages.module';
+import { GalleryApi } from './api/infraestrcutrure/gallery/gallery-api.service';
+import { GalleryGateway } from './api/domain/gallery/gallery-gateway';
+import { ProductsGateway } from './api/domain/products/products-gateway';
+import { ProductsApi } from './api/infraestrcutrure/products/products-api.service';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -26,6 +30,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     HttpClientModule,
     SharedModule,
+    PagesModule,
     StoreModule.forRoot({ lang: languageReducer }),
     TranslateModule.forRoot({
       loader: {
@@ -41,6 +46,14 @@ export function HttpLoaderFactory(http: HttpClient) {
       useClass: TokenInterceptor,
       multi: true,
     },
+    {
+      provide: GalleryGateway,
+      useClass: GalleryApi
+    },
+    {
+      provide: ProductsGateway,
+      useClass: ProductsApi
+    }
   ],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]

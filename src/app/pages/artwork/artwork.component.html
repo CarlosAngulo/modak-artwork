@@ -1,5 +1,5 @@
-<mdk-page-base>
-    <ng-container *ngIf="!!artwork">
+<div class="artwork">
+    <mdk-page-base [loaded]="contentLoaded">
         <h1 class="title text-2xl md:text-4xl">
             {{artwork.title}}
         </h1>
@@ -22,5 +22,5 @@
                 </div>
             </div>
         </div>
-    </ng-container>
-</mdk-page-base>
+    </mdk-page-base>
+</div>

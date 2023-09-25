@@ -1,0 +1,28 @@
+@import '../../../scss/variables';
+
+.switch {
+    border: 3px solid $highlight-text-color;
+    padding: 2px;
+    background-color: rgba(0,0,0,0.3);
+    cursor: pointer;
+    width: 100%;
+    display: block;
+    border-radius: 900px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.2s ease-out;
+    display: flex;
+    color: rgba($highlight-text-color, 0.3);
+    
+    &-option {
+        padding: 10px;
+        border-radius: 900px;
+        border: 1px solid transparent;
+        &--selected {
+            color: $highlight-text-color;
+            border: 1px solid rgba($highlight-text-color, 0.4);
+            background-color: rgba(0,0,0,0.3);
+        }
+    }
+}

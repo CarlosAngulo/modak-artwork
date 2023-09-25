@@ -1,0 +1,12 @@
+@import '../../scss/variables';
+
+.results {
+    border: 1px solid rgba($highlight-border-color, 0.5);
+}
+
+img {
+    width: 80px;
+    height: 80px;
+    display: block;
+    object-fit: cover;
+}

@@ -4,12 +4,16 @@
     border: 0.5px solid rgba($highlight-border-color, 0.3);
     padding: 10px;
     cursor: pointer;
+    position: relative;
+
     &:hover {
-        background-color: rgba(100,255,255,0.05);
+        background-color: rgba(100, 255, 255, 0.05);
+
         .card__caption {
             bottom: 0;
         }
     }
+
     &__figure {
         width: 100%;
         margin: 0;
@@ -18,20 +22,38 @@
         height: 250px;
         position: relative;
     }
+
     &__image {
         display: block;
         width: 100%;
         height: 100%;
         object-fit: cover;
     }
+
     &__caption {
         position: absolute;
         bottom: -100px;
         z-index: 10;
-        background-color: rgba(0,0,0,0.5);
+        background-color: rgba(0, 0, 0, 0.5);
         text-align: center;
         width: 100%;
         padding: 6px 12px;
         transition: bottom 0.3s ease-out;
+    }
+
+    &__loader {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgb(255 250 180 / 30%);
+        
+        mdk-loader {
+            display: block;
+            position: absolute;
+            top: calc(50% - 40px);
+            left: calc(50% - 40px);
+        }
     }
 }

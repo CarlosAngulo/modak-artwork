@@ -1,9 +1,16 @@
 <div class="search p-2 mb-3">
     <div class="search-container m-auto flex gap-3">
-        <input class="search-input flex-grow-1" type="text" [(ngModel)]="searchValue">
+        <input
+            class="search-input flex-grow-1"
+            type="text"
+            (keyup)="searchValueSubject.next(searchValue)"
+            [(ngModel)]="searchValue"/>
         <div class="search-buttonset flex gap-2">
-            <mdk-button (click)="searchByKeywords()" text="By Keyword"></mdk-button>
-            <mdk-button (click)="searchByCategory()" text="By Product"></mdk-button>
+            <mdk-switch
+                [defaultValue]="searchTerms[0]"
+                [values]="searchTerms"
+                (onChange)="onSwitchType($event)">
+            </mdk-switch>
         </div>
     </div>
 </div>

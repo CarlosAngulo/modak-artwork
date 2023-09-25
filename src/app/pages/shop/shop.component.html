@@ -1,12 +1,12 @@
-<div class="page-layout shop not-found">
-    <h1>Shop</h1>
-    <mdk-search></mdk-search>
-    <ng-container *ngIf="artWorks; else loading">
+<div class="shop">
+    <mdk-page-base [loaded]="contentLoaded">
+        <h1>Shop</h1>
         <div class="grid-container">
             <div class="grid">
                 <div class="col-12 md:col-6 lg:col-4" *ngFor="let card of artWorks">
                     <mdk-card
                         (click)="navigateToArtwork(card.id)"
+                        [showLoader] = "cardCurrentlyLoading === card.id"
                         [title]="card.title"
                         [image]="card.image"
                         [artist]="card.artist"
@@ -14,10 +14,5 @@
                 </div>
             </div>
         </div>
-    </ng-container>
-    <ng-template #loading>
-        <div class="flex align-items-center justify-content-center">
-            <h2>Loading...</h2>
-        </div>
-    </ng-template>
+    </mdk-page-base>
 </div>

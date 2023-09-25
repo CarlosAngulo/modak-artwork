@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
     providedIn: 'root'
 })
-export class ConstantsService {
+export class ApiConfigService {
     API_URL = 'https://api.artic.edu/api/v1/';
     PLACEHOLDER_IMAGE = '/assets/images/image_placeholder.png';
     MAX_RESULTS = 18;

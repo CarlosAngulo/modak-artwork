@@ -58,7 +58,7 @@ export class AuthService {
   }
 
   setLocalStorageToken(token: string) {
-    const expirationTime = Math.floor(Date.now() / 1000) + 120;
+    const expirationTime = Math.floor(Date.now() / 1000) + 1200;
     localStorage.setItem('token', token);
     localStorage.setItem('tokenExpiration', expirationTime.toString());
   }
