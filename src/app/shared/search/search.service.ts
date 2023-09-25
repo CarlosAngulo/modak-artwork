@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SearchStrategy } from './search.strategy.interface';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class SearchService {
@@ -9,7 +10,7 @@ export class SearchService {
     this.strategy = strategy;
   }
 
-  search(query: string): void {
-    this.strategy.search(query);
+  search(query: string): Observable<any> {
+    return this.strategy.search(query);
   }
 }

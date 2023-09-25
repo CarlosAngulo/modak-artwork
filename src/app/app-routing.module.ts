@@ -6,6 +6,7 @@ import { AuthService } from './auth/services/auth.service';
 import { map } from 'rxjs';
 import { ShopComponent } from '@app/pages/shop/shop.component';
 import { ArtworkComponent } from './pages/artwork/artwork.component';
+import { ArtworkResolver } from './pages/artwork/artwork.resolver';
 
 const routes: Routes = [
   {
@@ -29,7 +30,8 @@ const routes: Routes = [
   {
     path: 'artwork/:id',
     component: ArtworkComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    resolve: { artowork: ArtworkResolver }
   },
   {
     path: 'not-found',

@@ -1,14 +1,20 @@
-export interface IArtWorkListDTO {
-    data: IArtworkDataDTO[],
-    config: IArtWorkConfig,
+export interface IResultsDTO {
+    data: IArtworkDataDTO[] | IProductDataDTO[],
+    config: IResultsConfig,
     pagination: IArtWorkPagination,
-    info: IArtWorkInfo,
+    info: IResultsInfo,
 }
 
 export interface IArtWorkDTO {
     data: IArtworkDataDTO,
-    config: IArtWorkConfig,
-    info: IArtWorkInfo,
+    config: IResultsConfig,
+    info: IResultsInfo,
+}
+
+export interface IProductDTO {
+    data: IProductDataDTO,
+    config: IResultsConfig,
+    info: IResultsInfo,
 }
 
 export interface IArtWorkPagination {
@@ -30,12 +36,22 @@ export interface IArtworkDataDTO {
     title: string,
 }
 
-export interface IArtWorkConfig {
+export interface IProductDataDTO {
+    id: number,
+    title: string,
+    image_url: string,
+    description: string,
+    price_display: string,
+    artist_ids: number[],
+    artwork_ids: number[],
+}
+
+export interface IResultsConfig {
     iiif_url: string,
     website_url: string
 }
 
-export interface IArtWorkInfo {
+export interface IResultsInfo {
     licence_text: string,
     licence_links: string,
     version: string,

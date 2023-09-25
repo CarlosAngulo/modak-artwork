@@ -1,3 +1,8 @@
 <div class="home">
-a
+    <mdk-page-base>
+        <h1>Welcome</h1>
+        <mdk-search (onSearchResults)="onSearchResults($event)"></mdk-search>
+
+        <mdk-results-table [data]="results"></mdk-results-table>
+    </mdk-page-base>
 </div>

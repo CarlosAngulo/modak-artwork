@@ -6,4 +6,8 @@
         </figcaption>
     </figure>
     <p class="card__description">{{artist}}</p>
+    
+    <div class="card__loader" *ngIf="showLoader">
+        <mdk-loader></mdk-loader>
+    </div>
 </div>

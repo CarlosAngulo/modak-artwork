@@ -1,0 +1,13 @@
+<table class="results">
+    <tr *ngFor="let result of results">
+        <td>
+            <img [src]="result.image" alt="result.title">
+        </td>
+        <td>
+            {{result.title}}
+        </td>
+        <td>
+            {{result.artist}}
+        </td>
+    </tr>
+</table>

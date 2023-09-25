@@ -1,4 +1,4 @@
-import { IArtworkDataDTO } from "@app/api/arwork.model";
+import { IArtworkDataDTO } from "@app/api/domain/api.model";
 
 export interface IArtWork {
   date: string;

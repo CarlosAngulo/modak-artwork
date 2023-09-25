@@ -1,29 +1,30 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { GalleryApi } from '@app/api/gallery.api';
 import { Subject, takeUntil } from 'rxjs';
 import { ArtWork } from './artwork.model';
-import { ConstantsService } from '@app/constants/constants.service';
-import { PagesService } from '../pages.service';
+import { ApiConfigService } from '@app/api/api-config.service';
+import { GalleryGateway } from '@app/api/domain/gallery/gallery-gateway';
 
 @Component({
   selector: 'app-artwork',
   templateUrl: './artwork.component.html',
-  styleUrls: ['./artwork.component.scss'],
-  providers: [ GalleryApi, PagesService ]
+  styleUrls: ['./artwork.component.scss']
 })
 export class ArtworkComponent implements OnInit, OnDestroy {
   id!: number;
   artwork!: ArtWork;
   unsubscribe$: Subject<void> = new Subject<void>();
-  contentLoaded = false
+  contentLoaded = false;
 
   constructor(
-    protected galleryApi: GalleryApi,
+    protected galleryApi: GalleryGateway,
     protected route: ActivatedRoute,
-    protected constants: ConstantsService,
-    protected pageService: PagesService
-  ) {}
+    protected constants: ApiConfigService,
+  ) {
+    const data = route.snapshot.data['artowork'];
+    this.artwork = new ArtWork(data.data, data.config.iiif_url, this.constants.PLACEHOLDER_IMAGE);
+    this.contentLoaded = true;
+  }
 
    ngOnInit(): void {
     this.route.params
@@ -31,13 +32,6 @@ export class ArtworkComponent implements OnInit, OnDestroy {
     .subscribe(params => {
       this.id = +params['id'];
     });
-
-    this.galleryApi.getById(this.id)
-    .pipe(takeUntil(this.unsubscribe$))
-    .subscribe((response) => {
-      this.pageService.contentLoaded();
-      this.artwork = new ArtWork(response.data, response.config.iiif_url, this.constants.PLACEHOLDER_IMAGE)
-    })
   }
 
    ngOnDestroy(): void {
